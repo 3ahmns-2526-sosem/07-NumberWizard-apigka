@@ -51,12 +51,6 @@ public class GameManager : MonoBehaviour
         SetButtonsInteractable(false);
     }
 
-    private void SetButtonsInteractable(bool state)
-    {
-        if (higherButton != null) higherButton.interactable = state;
-        if (lowerButton != null) lowerButton.interactable = state;
-        if (correctButton != null) correctButton.interactable = state;
-    }
 
     void CalculateNextGuess()
     {
@@ -71,5 +65,12 @@ public class GameManager : MonoBehaviour
         {
             guessText.text = guess + "" + "?";
         }
+    }
+
+    private void SetButtonsInteractable(bool state)
+    {
+        if (higherButton != null) higherButton.interactable = state;
+        if (lowerButton != null) lowerButton.interactable = state;
+        if (correctButton != null) correctButton.interactable = state;
     }
 }
