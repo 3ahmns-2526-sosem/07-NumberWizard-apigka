@@ -1,8 +1,8 @@
 # 07-NumberWizard-apigka
+Unity Version 6000.0.57f1
 
 Ein interaktives Ratespiel in Unity, bei dem die künstliche Intelligenz (der "Number Wizard") versucht, eine vom Spieler ausgedachte Zahl durch gezieltes Fragen zu erraten.
 
-Unity Version 6000.0.57f1
 
 ---
 
