@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Calculate : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private int min = 1;
@@ -16,13 +16,24 @@ public class Calculate : MonoBehaviour
         
         CalculateNextGuess();
     }
+    public void OnHigherPressed()
+    {
+        // Da die Zahl höher ist, wird das Minimum angehoben
+        min = guess + 1;
+
+        // Neuen Rateversuch berechnen und UI updaten
+        CalculateNextGuess();
+    }
 
     void CalculateNextGuess()
     {
-        
-        guess = (min + max) / 2;
 
-        
+        if (min > max)
+        {
+            min = max;
+        }
+
+        guess = (min + max) / 2;
         UpdateUI();
     }
 
