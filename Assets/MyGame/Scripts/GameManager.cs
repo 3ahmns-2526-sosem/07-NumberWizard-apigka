@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int min = 1;
     [SerializeField] private int max = 1000;
 
+    private int initialMin;
+    private int initialMax;
     private int guess;
 
     [SerializeField] private TextMeshProUGUI guessText;
@@ -15,39 +17,63 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button higherButton;
     [SerializeField] private Button lowerButton;
     [SerializeField] private Button correctButton;
+    [SerializeField] private Button restartButton;
 
     void Start()
     {
+
+        initialMin = min;
+        initialMax = max;
+
+        StartGame();
+    }
+
+    void StartGame()
+    {
         
+        min = initialMin;
+        max = initialMax;
+
+        
+        SetButtonsInteractable(true);
+
+      
         CalculateNextGuess();
     }
+
+    public void OnRestartPressed()
+    {
+       
+        StartGame();
+    }
+
     public void OnHigherPressed()
     {
-        // Da die Zahl höher ist, wird das Minimum angehoben
+        
         min = guess + 1;
 
-        // Neuen Rateversuch berechnen und UI updaten
+       
         CalculateNextGuess();
     }
 
     public void OnLowerPressed()
     {
-        // Da die Zahl niedriger ist, wird das Maximum abgesenkt
+       
         max = guess - 1;
 
-        // Neuen Rateversuch berechnen und UI updaten
+       
         CalculateNextGuess();
     }
 
     public void OnCorrectPressed()
     {
-        // Erfolgsmeldung in der UI anzeigen (der finale Guess bleibt im Text sichtbar)
+        
         if (guessText != null)
         {
             guessText.text = $"Your number {guess}!";
         }
 
-        // Buttons optional deaktivieren, damit kein weiterer Input möglich ist
+      
         SetButtonsInteractable(false);
     }
 
