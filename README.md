@@ -1,24 +1,22 @@
 # 07-NumberWizard-apigka
 
-Markdown Cheatsheet: https://github.com/adam-p/markdown-here/wiki/markdown-cheatsheet
+Ein interaktives Ratespiel in Unity, bei dem die künstliche Intelligenz (der "Number Wizard") versucht, eine vom Spieler ausgedachte Zahl durch gezieltes Fragen zu erraten.
 
-Unity - Number Wizard (Zahlen-Zauberer)
+Unity Version 6000.0.57f1
 
-Ein einfaches, interaktives 2D-Ratespiel, entwickelt mit der Unity Engine und C#. Dieses Projekt dient als ideales Einstiegsprojekt, um die Grundlagen der Spieleentwicklung und algorithmisches Denken praxisnah zu erlernen.
+---
 
+## Ziel des Spiels
 
-## Das Spielprinzip
-Der Spieler denkt sich im Kopf eine geheime Ganzzahl in einem bestimmten Bereich aus (Standard: `1` bis `1000`). Der **Number Wizard** (die KI des Spiels) versucht, die Zahl durch strategisches Raten so schnell wie möglich herauszufinden.
+Der Spieler denkt sich im Kopf eine Zahl in einem festgelegten Bereich aus (z. B. zwischen 1 und 1000). Der *Number Wizard* schlägt daraufhin Zahlen vor. Der Spieler gibt dem System über Buttons Feedback, ob die gesuchte Zahl höher oder niedriger ist, bis der Wizard die korrekte Zahl erraten hat.
 
-Nach jedem Rateversuch gibt der Spieler dem Computer über die Benutzeroberfläche (UI) ein Feedback:
-* **Höher (+):** Die gedachte Zahl ist größer als der Tipp des Computers.
-* **Niedriger (-):** Die gedachte Zahl ist kleiner als der Tipp des Computers.
-* **Korrekt (=):** Der Computer hat die Zahl erraten! Das Spiel wechselt in den Gewinnbildschirm.
+---
 
-Der mathematische Algorithmus
-Um die Zahl mit möglichst wenigen Versuchen zu ermitteln, nutzt das Spiel das Prinzip der **Binären Suche (Binary Search)**. 
-Anstatt blind zu raten, halbiert das Skript nach jedem Feedback den verbleibenden Suchraum:
+## Bedienung & Buttons
 
-$$\text{guess} = \frac{\text{min} + \text{max}}{2}$$
+Das Spiel wird komplett über die Benutzeroberfläche (UI) gesteuert. Es stehen vier Buttons zur Verfügung:
 
-Durch diese Vorgehensweise ist garantiert, dass das System selbst bei einem großen Zahlenbereich von 1 bis 1000 die gesuchte Zahl in **maximal 10 Versuchen** ($\log_2 1000 \approx 10$) exakt bestimmt.
+* **Higher:** Drücke diesen Button, wenn deine ausgedachte Zahl **größer** ist als der aktuelle Vorschlag des Wizards.
+* **Lower:** Drücke diesen Button, wenn deine ausgedachte Zahl **kleiner** ist als der aktuelle Vorschlag des Wizards.
+* **Correct:** Drücke diesen Button, wenn der Wizard deine Zahl **exakt erraten** hat. Das Spiel wird daraufhin beendet und zeigt eine Erfolgsmeldung an.
+* **Restart:** Setzt das Spiel nach einem Erfolg (oder zwischendurch) wieder auf den ursprünglichen Startbereich zurück, aktiviert alle Buttons und startet eine neue Runde.
