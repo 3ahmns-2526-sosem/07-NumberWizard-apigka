@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class GameManager : MonoBehaviour
 
     private int guess;
 
-    [SerializeField] private TextMeshProUGUI guessText; 
+    [SerializeField] private TextMeshProUGUI guessText;
+
+    [SerializeField] private Button higherButton;
+    [SerializeField] private Button lowerButton;
+    [SerializeField] private Button correctButton;
 
     void Start()
     {
@@ -34,13 +39,28 @@ public class GameManager : MonoBehaviour
         CalculateNextGuess();
     }
 
-    void CalculateNextGuess()
+    public void OnCorrectPressed()
     {
-        if (max < min)
+        // Erfolgsmeldung in der UI anzeigen (der finale Guess bleibt im Text sichtbar)
+        if (guessText != null)
         {
-            max = min;
+            guessText.text = $"Your number {guess}!";
         }
 
+        // Buttons optional deaktivieren, damit kein weiterer Input möglich ist
+        SetButtonsInteractable(false);
+    }
+
+    private void SetButtonsInteractable(bool state)
+    {
+        if (higherButton != null) higherButton.interactable = state;
+        if (lowerButton != null) lowerButton.interactable = state;
+        if (correctButton != null) correctButton.interactable = state;
+    }
+
+    void CalculateNextGuess()
+    {
+        if (max < min) max = min;
         guess = (min + max) / 2;
         UpdateUI();
     }
