@@ -25,12 +25,20 @@ public class GameManager : MonoBehaviour
         CalculateNextGuess();
     }
 
+    public void OnLowerPressed()
+    {
+        // Da die Zahl niedriger ist, wird das Maximum abgesenkt
+        max = guess - 1;
+
+        // Neuen Rateversuch berechnen und UI updaten
+        CalculateNextGuess();
+    }
+
     void CalculateNextGuess()
     {
-
-        if (min > max)
+        if (max < min)
         {
-            min = max;
+            max = min;
         }
 
         guess = (min + max) / 2;
