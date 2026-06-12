@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] private int min = 1;
-    [SerializeField] private int max = 1000;
+    [SerializeField] private int min;
+    [SerializeField] private int max;
 
     private int initialMin;
     private int initialMax;
@@ -49,21 +49,26 @@ public class GameManager : MonoBehaviour
 
     public void OnHigherPressed()
     {
-        
-        min = guess + 1;
 
-       
+        if (guess < initialMax)
+        {
+            min = guess + 1;
+        }
+
         CalculateNextGuess();
     }
 
     public void OnLowerPressed()
     {
-       
-        max = guess - 1;
 
-       
+        if (guess > initialMin)
+        {
+            max = guess - 1;
+        }
+
         CalculateNextGuess();
     }
+
 
     public void OnCorrectPressed()
     {
@@ -80,8 +85,18 @@ public class GameManager : MonoBehaviour
 
     void CalculateNextGuess()
     {
-        if (max < min) max = min;
+        min = Mathf.Clamp(min, initialMin, initialMax);
+        max = Mathf.Clamp(max, initialMin, initialMax);
+
+        
+        if (min > max)
+        {
+            min = max;
+        }
+
+     
         guess = (min + max) / 2;
+
         UpdateUI();
     }
 
